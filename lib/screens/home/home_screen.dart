@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/components/custom_text.dart';
 import 'package:grocery_app/screens/cart/cart.dart';
+import 'package:grocery_app/screens/profile/profile.dart';
 
 import 'widgets/product_grid.dart';
 
@@ -10,6 +11,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+List _screens = <Widget>[const Profile(), const HomeScreen()];
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
@@ -55,10 +58,22 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 40,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            Icon(Icons.home_outlined),
-            Icon(Icons.favorite_border),
-            Icon(Icons.person_outlined),
+          children: [
+            InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
+                },
+                child: const Icon(Icons.home_outlined)),
+            const Icon(Icons.favorite_border),
+            InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Profile()));
+                },
+                child: const Icon(Icons.person_outlined)),
           ],
         ),
       ),
